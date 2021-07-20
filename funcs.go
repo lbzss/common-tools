@@ -15,7 +15,7 @@ func GetNowTimeStr() string {
 
 func GetHostName() string {
 	name, _ := os.Hostname()
-	return name
+	return name + "v1.0.2"
 }
 
 func GetLocalIp() string {

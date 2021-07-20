@@ -18,18 +18,18 @@ func GetHostName() string {
 	return name + "v1.0.2"
 }
 
-func GetLocalIp() string {
+func GetLocalIp() (string, error) {
 	conn, err := net.Dial("udp", "8.8.8.8:53")
 
 	if err != nil {
 		log.Printf("net.dial err= %v", err)
-		return ""
+		return "", fmt.Errorf("net.dial error")
 	} else {
 		fmt.Println(conn.LocalAddr().String())
 		fmt.Println(conn.LocalAddr().Network())
 		localIp := strings.Split(conn.LocalAddr().String(), ":")[0]
 		conn.Close()
-		return localIp
+		return localIp, nil
 	}
 
 }
